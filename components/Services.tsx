@@ -1,12 +1,12 @@
 import React from 'react';
 import SectionHeading from './SectionHeading';
 import FadeIn from './FadeIn';
-import { SERVICES } from '../constants';
+import { SERVICES, CONTACT_INFO } from '../constants';
 
 const Services: React.FC = () => {
-  const handleDemoClick = (e: React.MouseEvent) => {
+  const handleConsultClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    alert("⚠️ MODO DEMONSTRAÇÃO\n\nEste botão levaria para o WhatsApp para uma consulta.");
+    window.open(`https://wa.me/55${CONTACT_INFO.whatsapp.replace(/\D/g, '')}`, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -51,7 +51,7 @@ const Services: React.FC = () => {
               </p>
               <button 
                 type="button"
-                onClick={handleDemoClick}
+                onClick={handleConsultClick}
                 className="relative z-10 inline-block px-6 py-2 bg-dark-950 text-gold-500 font-bold text-sm uppercase tracking-wider hover:bg-black transition-colors shadow-lg cursor-pointer border-none"
               >
                 Consultar Agora

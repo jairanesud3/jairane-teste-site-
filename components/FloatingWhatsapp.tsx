@@ -5,7 +5,8 @@ import { CONTACT_INFO } from '../constants';
 const FloatingWhatsapp: React.FC = () => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    alert("⚠️ MODO DEMONSTRAÇÃO\n\nEm um ambiente real, isso abriria o WhatsApp diretamente no número: " + CONTACT_INFO.whatsapp);
+    // Open in new tab to avoid iframe/preview crashes
+    window.open(`https://wa.me/55${CONTACT_INFO.whatsapp.replace(/\D/g, '')}`, '_blank', 'noopener,noreferrer');
   };
 
   return (

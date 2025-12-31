@@ -3,8 +3,8 @@ import { MapPin, Phone, Instagram, Mail } from 'lucide-react';
 import { CONTACT_INFO, NAV_ITEMS } from '../constants';
 
 const Footer: React.FC = () => {
-  const handleDemoClick = (type: string) => {
-    alert(`⚠️ MODO DEMONSTRAÇÃO\n\nEsta ação abriria o ${type} do escritório.`);
+  const openLink = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   const handleScrollToSection = (id: string) => {
@@ -37,15 +37,17 @@ const Footer: React.FC = () => {
             <div className="flex space-x-4">
               <button 
                 type="button"
-                onClick={() => handleDemoClick('Instagram')}
+                onClick={() => openLink('https://instagram.com')}
                 className="text-gray-400 hover:text-gold-500 transition-colors bg-transparent border-none cursor-pointer p-0"
+                aria-label="Instagram"
               >
                 <Instagram size={20} />
               </button>
               <button 
                 type="button"
-                onClick={() => handleDemoClick('Email')}
+                onClick={() => openLink(`mailto:contato@jairanesousa.adv.br`)}
                 className="text-gray-400 hover:text-gold-500 transition-colors bg-transparent border-none cursor-pointer p-0"
+                aria-label="Email"
               >
                 <Mail size={20} />
               </button>
@@ -84,7 +86,7 @@ const Footer: React.FC = () => {
                 <Phone className="w-5 h-5 text-gold-500 mr-3 shrink-0" />
                 <button 
                   type="button"
-                  onClick={() => handleDemoClick('WhatsApp')}
+                  onClick={() => openLink(`https://wa.me/55${CONTACT_INFO.whatsapp.replace(/\D/g, '')}`)}
                   className="text-sm hover:text-gold-500 cursor-pointer bg-transparent border-none p-0 text-gray-400 text-left"
                 >
                   {CONTACT_INFO.whatsapp}
@@ -101,7 +103,7 @@ const Footer: React.FC = () => {
             </p>
             <button 
               type="button"
-              onClick={() => handleDemoClick('WhatsApp')}
+              onClick={() => openLink(`https://wa.me/55${CONTACT_INFO.whatsapp.replace(/\D/g, '')}`)}
               className="inline-flex items-center justify-center w-full px-4 py-3 border border-gold-500 text-gold-500 text-sm font-bold uppercase hover:bg-gold-500 hover:text-dark-950 transition-colors cursor-pointer bg-transparent"
             >
               Falar no WhatsApp

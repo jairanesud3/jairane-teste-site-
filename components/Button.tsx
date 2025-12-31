@@ -13,13 +13,13 @@ const Button: React.FC<ButtonProps> = ({
   className = '', 
   href,
   onClick,
-  type = 'button', // Default to 'button' to prevent form submission behavior
+  type = 'button',
   ...props 
 }) => {
-  const baseStyles = "inline-flex items-center justify-center px-8 py-3 text-sm font-medium transition-all duration-300 uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-dark-950 cursor-pointer";
+  const baseStyles = "inline-flex items-center justify-center px-8 py-3 text-sm font-medium transition-all duration-300 uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-dark-950 cursor-pointer select-none";
   
   const variants = {
-    primary: "bg-gold-500 text-dark-950 hover:bg-gold-400 font-bold",
+    primary: "bg-gold-500 text-dark-950 hover:bg-gold-400 font-bold shadow-lg hover:shadow-gold-500/20",
     outline: "border border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-dark-950",
     text: "text-gold-500 hover:text-gold-400 underline-offset-4 hover:underline p-0"
   };
@@ -27,20 +27,19 @@ const Button: React.FC<ButtonProps> = ({
   const combinedClasses = `${baseStyles} ${variants[variant]} ${className}`;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    // CRITICAL: Always prevent default unless it's explicitly a submit button
-    // This stops the browser from trying to navigate or reload the page
+    // 1. Prevent default browser navigation (stops the white screen crash)
     if (type !== 'submit') {
       e.preventDefault();
     }
 
-    // Call external onClick handler if provided
+    // 2. Run custom onClick if exists
     if (onClick) {
       onClick(e);
     }
 
     if (!href) return;
 
-    // Internal Anchor - Manual Scroll with Safety Try/Catch
+    // 3. Handle Internal Links (Smooth Scroll)
     if (href.startsWith('#')) {
       try {
         const element = document.querySelector(href);
@@ -48,19 +47,18 @@ const Button: React.FC<ButtonProps> = ({
           element.scrollIntoView({ behavior: 'smooth' });
         }
       } catch (error) {
-        console.error("Erro ao rolar para seção:", error);
+        console.warn("Seção não encontrada:", href);
       }
       return;
     }
 
-    // External link - Intercept for Demo Mode
-    let action = "redirecionado para um link externo";
-    if (href.includes('wa.me')) action = "abrir o WhatsApp";
-    if (href.includes('mailto')) action = "abrir seu cliente de E-mail";
-    if (href.includes('maps')) action = "abrir o Google Maps";
-    if (href.includes('instagram')) action = "abrir o Instagram";
-
-    alert(`⚠️ MODO DEMONSTRAÇÃO\n\nEm um site real, esta ação iria ${action}.\n\nLink alvo: ${href}`);
+    // 4. Handle External Links (Open in New Tab)
+    // CRITICAL: Opening in _blank prevents iframe crashes in preview environments
+    try {
+      window.open(href, '_blank', 'noopener,noreferrer');
+    } catch (err) {
+      console.error("Erro ao abrir link externo", err);
+    }
   };
 
   return (
