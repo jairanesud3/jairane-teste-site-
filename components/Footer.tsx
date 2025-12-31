@@ -3,13 +3,11 @@ import { MapPin, Phone, Instagram, Mail } from 'lucide-react';
 import { CONTACT_INFO, NAV_ITEMS } from '../constants';
 
 const Footer: React.FC = () => {
-  const handleDemoClick = (e: React.MouseEvent<HTMLAnchorElement>, type: string) => {
-    e.preventDefault();
+  const handleDemoClick = (type: string) => {
     alert(`⚠️ MODO DEMONSTRAÇÃO\n\nEsta ação abriria o ${type} do escritório.`);
   };
 
-  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
+  const handleScrollToSection = (id: string) => {
     const element = document.querySelector(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -33,20 +31,18 @@ const Footer: React.FC = () => {
               Defesa técnica, ética e combativa. Nosso compromisso é com a sua liberdade e a preservação dos seus direitos fundamentais.
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="#" 
-                onClick={(e) => handleDemoClick(e, 'Instagram')}
-                className="text-gray-400 hover:text-gold-500 transition-colors"
+              <button 
+                onClick={() => handleDemoClick('Instagram')}
+                className="text-gray-400 hover:text-gold-500 transition-colors bg-transparent border-none cursor-pointer"
               >
                 <Instagram size={20} />
-              </a>
-              <a 
-                href={`mailto:contato@jairanesousa.adv.br`} 
-                onClick={(e) => handleDemoClick(e, 'Email')}
-                className="text-gray-400 hover:text-gold-500 transition-colors"
+              </button>
+              <button 
+                onClick={() => handleDemoClick('Email')}
+                className="text-gray-400 hover:text-gold-500 transition-colors bg-transparent border-none cursor-pointer"
               >
                 <Mail size={20} />
-              </a>
+              </button>
             </div>
           </div>
 
@@ -56,13 +52,12 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               {NAV_ITEMS.map((item) => (
                 <li key={item.label}>
-                  <a 
-                    href={item.href} 
-                    onClick={(e) => handleScrollToSection(e, item.href)}
-                    className="text-sm hover:text-gold-500 transition-colors cursor-pointer"
+                  <button 
+                    onClick={() => handleScrollToSection(item.href)}
+                    className="text-sm hover:text-gold-500 transition-colors cursor-pointer bg-transparent border-none p-0 text-gray-400"
                   >
                     {item.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -80,13 +75,12 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 text-gold-500 mr-3 shrink-0" />
-                <a 
-                  href={`https://wa.me/55${CONTACT_INFO.whatsapp.replace(/\D/g, '')}`} 
-                  onClick={(e) => handleDemoClick(e, 'WhatsApp')}
-                  className="text-sm hover:text-gold-500 cursor-pointer"
+                <button 
+                  onClick={() => handleDemoClick('WhatsApp')}
+                  className="text-sm hover:text-gold-500 cursor-pointer bg-transparent border-none p-0 text-gray-400"
                 >
                   {CONTACT_INFO.whatsapp}
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -97,13 +91,12 @@ const Footer: React.FC = () => {
             <p className="text-sm mb-4">
               Atendimento imediato para prisões em flagrante e operações policiais.
             </p>
-            <a 
-              href={`https://wa.me/55${CONTACT_INFO.whatsapp.replace(/\D/g, '')}`}
-              onClick={(e) => handleDemoClick(e, 'WhatsApp')}
-              className="inline-flex items-center justify-center w-full px-4 py-3 border border-gold-500 text-gold-500 text-sm font-bold uppercase hover:bg-gold-500 hover:text-dark-950 transition-colors cursor-pointer"
+            <button 
+              onClick={() => handleDemoClick('WhatsApp')}
+              className="inline-flex items-center justify-center w-full px-4 py-3 border border-gold-500 text-gold-500 text-sm font-bold uppercase hover:bg-gold-500 hover:text-dark-950 transition-colors cursor-pointer bg-transparent"
             >
               Falar no WhatsApp
-            </a>
+            </button>
           </div>
         </div>
 

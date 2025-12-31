@@ -4,8 +4,7 @@ import FadeIn from './FadeIn';
 import { SERVICES } from '../constants';
 
 const Services: React.FC = () => {
-  const handleDemoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
+  const handleDemoClick = () => {
     alert("⚠️ MODO DEMONSTRAÇÃO\n\nEste botão levaria para o WhatsApp para uma consulta.");
   };
 
@@ -49,13 +48,12 @@ const Services: React.FC = () => {
               <p className="text-dark-900 mb-6 font-medium relative z-10">
                 Atuamos em diversas outras frentes do Direito Criminal. Entre em contato para uma análise preliminar.
               </p>
-              <a 
-                href="https://wa.me/5547999999999"
+              <button 
                 onClick={handleDemoClick}
-                className="relative z-10 inline-block px-6 py-2 bg-dark-950 text-gold-500 font-bold text-sm uppercase tracking-wider hover:bg-black transition-colors shadow-lg cursor-pointer"
+                className="relative z-10 inline-block px-6 py-2 bg-dark-950 text-gold-500 font-bold text-sm uppercase tracking-wider hover:bg-black transition-colors shadow-lg cursor-pointer border-none"
               >
                 Consultar Agora
-              </a>
+              </button>
             </div>
           </FadeIn>
         </div>

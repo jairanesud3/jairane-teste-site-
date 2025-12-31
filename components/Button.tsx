@@ -4,7 +4,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'outline' | 'text';
   children: React.ReactNode;
   className?: string;
-  href?: string; // If provided, renders as an <a> tag
+  href?: string; 
 }
 
 const Button: React.FC<ButtonProps> = ({ 
@@ -12,6 +12,7 @@ const Button: React.FC<ButtonProps> = ({
   children, 
   className = '', 
   href,
+  onClick,
   ...props 
 }) => {
   const baseStyles = "inline-flex items-center justify-center px-8 py-3 text-sm font-medium transition-all duration-300 uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-dark-950 cursor-pointer";
@@ -24,9 +25,16 @@ const Button: React.FC<ButtonProps> = ({
 
   const combinedClasses = `${baseStyles} ${variants[variant]} ${className}`;
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    // Internal Anchor - Manual Scroll to prevent routing crash
-    if (href?.startsWith('#')) {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    // If there's an existing onClick prop, call it first
+    if (onClick) {
+      onClick(e);
+    }
+
+    if (!href) return;
+
+    // Internal Anchor - Manual Scroll
+    if (href.startsWith('#')) {
       e.preventDefault();
       const element = document.querySelector(href);
       if (element) {
@@ -36,29 +44,19 @@ const Button: React.FC<ButtonProps> = ({
     }
 
     // External link - Intercept for Demo Mode
-    if (href && (href.startsWith('http') || href.startsWith('mailto'))) {
-      e.preventDefault();
-      
-      let action = "redirecionado para um link externo";
-      if (href.includes('wa.me')) action = "abrir o WhatsApp";
-      if (href.includes('mailto')) action = "abrir seu cliente de E-mail";
-      if (href.includes('maps')) action = "abrir o Google Maps";
-      if (href.includes('instagram')) action = "abrir o Instagram";
+    e.preventDefault();
+    let action = "redirecionado para um link externo";
+    if (href.includes('wa.me')) action = "abrir o WhatsApp";
+    if (href.includes('mailto')) action = "abrir seu cliente de E-mail";
+    if (href.includes('maps')) action = "abrir o Google Maps";
+    if (href.includes('instagram')) action = "abrir o Instagram";
 
-      alert(`⚠️ MODO DEMONSTRAÇÃO\n\nEm um site real, esta ação iria ${action}.\n\nLink alvo: ${href}`);
-    }
+    alert(`⚠️ MODO DEMONSTRAÇÃO\n\nEm um site real, esta ação iria ${action}.\n\nLink alvo: ${href}`);
   };
 
-  if (href) {
-    return (
-      <a href={href} className={combinedClasses} onClick={handleLinkClick}>
-        {children}
-      </a>
-    );
-  }
-
+  // Always render a button to prevent any browser navigation attempts
   return (
-    <button className={combinedClasses} {...props}>
+    <button className={combinedClasses} onClick={handleClick} {...props}>
       {children}
     </button>
   );
