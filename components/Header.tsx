@@ -17,9 +17,13 @@ const Header: React.FC = () => {
 
   const handleScrollToSection = (id: string) => {
     setIsOpen(false);
-    const element = document.querySelector(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    try {
+      const element = document.querySelector(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } catch (e) {
+      console.error("Navigation error:", e);
     }
   };
 
@@ -32,8 +36,9 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
         <button 
+          type="button"
           onClick={() => handleScrollToSection('#inicio')}
-          className="font-serif text-xl md:text-2xl tracking-wide text-white group cursor-pointer text-left focus:outline-none"
+          className="font-serif text-xl md:text-2xl tracking-wide text-white group cursor-pointer text-left focus:outline-none bg-transparent border-none p-0"
         >
           Jairane Sousa
           <span className="block text-xs md:text-sm text-gold-500 font-sans tracking-[0.2em] group-hover:text-gold-400 transition-colors">
@@ -46,6 +51,7 @@ const Header: React.FC = () => {
           {NAV_ITEMS.map((item) => (
             <button
               key={item.label}
+              type="button"
               onClick={() => handleScrollToSection(item.href)}
               className="text-sm font-medium text-gray-300 hover:text-gold-500 transition-colors uppercase tracking-widest cursor-pointer bg-transparent border-none p-0"
             >
@@ -64,7 +70,8 @@ const Header: React.FC = () => {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden text-gold-500 hover:text-white transition-colors"
+          type="button"
+          className="md:hidden text-gold-500 hover:text-white transition-colors bg-transparent border-none p-0"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -77,7 +84,8 @@ const Header: React.FC = () => {
           {NAV_ITEMS.map((item) => (
             <button
               key={item.label}
-              className="text-lg font-medium text-gray-300 hover:text-gold-500 border-b border-dark-800 pb-2 cursor-pointer text-left bg-transparent"
+              type="button"
+              className="text-lg font-medium text-gray-300 hover:text-gold-500 border-b border-dark-800 pb-2 cursor-pointer text-left bg-transparent w-full"
               onClick={() => handleScrollToSection(item.href)}
             >
               {item.label}

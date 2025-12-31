@@ -13,6 +13,7 @@ const Button: React.FC<ButtonProps> = ({
   className = '', 
   href,
   onClick,
+  type = 'button', // Default to 'button' to prevent form submission behavior
   ...props 
 }) => {
   const baseStyles = "inline-flex items-center justify-center px-8 py-3 text-sm font-medium transition-all duration-300 uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 focus:ring-offset-dark-950 cursor-pointer";
@@ -26,25 +27,33 @@ const Button: React.FC<ButtonProps> = ({
   const combinedClasses = `${baseStyles} ${variants[variant]} ${className}`;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    // If there's an existing onClick prop, call it first
+    // CRITICAL: Always prevent default unless it's explicitly a submit button
+    // This stops the browser from trying to navigate or reload the page
+    if (type !== 'submit') {
+      e.preventDefault();
+    }
+
+    // Call external onClick handler if provided
     if (onClick) {
       onClick(e);
     }
 
     if (!href) return;
 
-    // Internal Anchor - Manual Scroll
+    // Internal Anchor - Manual Scroll with Safety Try/Catch
     if (href.startsWith('#')) {
-      e.preventDefault();
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+      try {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } catch (error) {
+        console.error("Erro ao rolar para seção:", error);
       }
       return;
     }
 
     // External link - Intercept for Demo Mode
-    e.preventDefault();
     let action = "redirecionado para um link externo";
     if (href.includes('wa.me')) action = "abrir o WhatsApp";
     if (href.includes('mailto')) action = "abrir seu cliente de E-mail";
@@ -54,9 +63,13 @@ const Button: React.FC<ButtonProps> = ({
     alert(`⚠️ MODO DEMONSTRAÇÃO\n\nEm um site real, esta ação iria ${action}.\n\nLink alvo: ${href}`);
   };
 
-  // Always render a button to prevent any browser navigation attempts
   return (
-    <button className={combinedClasses} onClick={handleClick} {...props}>
+    <button 
+      type={type} 
+      className={combinedClasses} 
+      onClick={handleClick} 
+      {...props}
+    >
       {children}
     </button>
   );

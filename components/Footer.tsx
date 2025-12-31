@@ -8,9 +8,13 @@ const Footer: React.FC = () => {
   };
 
   const handleScrollToSection = (id: string) => {
-    const element = document.querySelector(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    try {
+      const element = document.querySelector(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } catch(e) {
+      console.error(e);
     }
   };
 
@@ -32,14 +36,16 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <button 
+                type="button"
                 onClick={() => handleDemoClick('Instagram')}
-                className="text-gray-400 hover:text-gold-500 transition-colors bg-transparent border-none cursor-pointer"
+                className="text-gray-400 hover:text-gold-500 transition-colors bg-transparent border-none cursor-pointer p-0"
               >
                 <Instagram size={20} />
               </button>
               <button 
+                type="button"
                 onClick={() => handleDemoClick('Email')}
-                className="text-gray-400 hover:text-gold-500 transition-colors bg-transparent border-none cursor-pointer"
+                className="text-gray-400 hover:text-gold-500 transition-colors bg-transparent border-none cursor-pointer p-0"
               >
                 <Mail size={20} />
               </button>
@@ -53,8 +59,9 @@ const Footer: React.FC = () => {
               {NAV_ITEMS.map((item) => (
                 <li key={item.label}>
                   <button 
+                    type="button"
                     onClick={() => handleScrollToSection(item.href)}
-                    className="text-sm hover:text-gold-500 transition-colors cursor-pointer bg-transparent border-none p-0 text-gray-400"
+                    className="text-sm hover:text-gold-500 transition-colors cursor-pointer bg-transparent border-none p-0 text-gray-400 text-left"
                   >
                     {item.label}
                   </button>
@@ -76,8 +83,9 @@ const Footer: React.FC = () => {
               <li className="flex items-center">
                 <Phone className="w-5 h-5 text-gold-500 mr-3 shrink-0" />
                 <button 
+                  type="button"
                   onClick={() => handleDemoClick('WhatsApp')}
-                  className="text-sm hover:text-gold-500 cursor-pointer bg-transparent border-none p-0 text-gray-400"
+                  className="text-sm hover:text-gold-500 cursor-pointer bg-transparent border-none p-0 text-gray-400 text-left"
                 >
                   {CONTACT_INFO.whatsapp}
                 </button>
@@ -92,6 +100,7 @@ const Footer: React.FC = () => {
               Atendimento imediato para prisões em flagrante e operações policiais.
             </p>
             <button 
+              type="button"
               onClick={() => handleDemoClick('WhatsApp')}
               className="inline-flex items-center justify-center w-full px-4 py-3 border border-gold-500 text-gold-500 text-sm font-bold uppercase hover:bg-gold-500 hover:text-dark-950 transition-colors cursor-pointer bg-transparent"
             >
