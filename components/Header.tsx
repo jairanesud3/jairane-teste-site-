@@ -29,7 +29,7 @@ const Header: React.FC = () => {
 
   return (
     <header 
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-[100] transition-all duration-300 ${
         scrolled ? 'bg-dark-950/95 backdrop-blur-sm border-b border-dark-800 py-4 shadow-lg' : 'bg-transparent py-6'
       }`}
     >

@@ -27,10 +27,11 @@ const Button: React.FC<ButtonProps> = ({
   const combinedClasses = `${baseStyles} ${variants[variant]} ${className}`;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    // 1. Prevent default browser navigation/submission unless explicit
+    // 1. Aggressively prevent default behavior unless it's a submit button
+    // This stops the browser from navigating/reloading which causes the white screen
     if (type !== 'submit') {
       e.preventDefault();
-      e.stopPropagation(); // Stop event bubbling to be safe
+      e.stopPropagation(); 
     }
 
     // 2. Run custom onClick if exists
@@ -54,7 +55,7 @@ const Button: React.FC<ButtonProps> = ({
     }
 
     // 4. Handle External Links (Open in New Tab)
-    // CRITICAL: Force _blank to prevent iframe blocking issues
+    // CRITICAL: Force _blank to prevent iframe preview crashes
     try {
       window.open(href, '_blank', 'noopener,noreferrer');
     } catch (err) {
