@@ -27,9 +27,10 @@ const Button: React.FC<ButtonProps> = ({
   const combinedClasses = `${baseStyles} ${variants[variant]} ${className}`;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    // 1. Prevent default browser navigation (stops the white screen crash)
+    // 1. Prevent default browser navigation/submission unless explicit
     if (type !== 'submit') {
       e.preventDefault();
+      e.stopPropagation(); // Stop event bubbling to be safe
     }
 
     // 2. Run custom onClick if exists
@@ -53,7 +54,7 @@ const Button: React.FC<ButtonProps> = ({
     }
 
     // 4. Handle External Links (Open in New Tab)
-    // CRITICAL: Opening in _blank prevents iframe crashes in preview environments
+    // CRITICAL: Force _blank to prevent iframe blocking issues
     try {
       window.open(href, '_blank', 'noopener,noreferrer');
     } catch (err) {
