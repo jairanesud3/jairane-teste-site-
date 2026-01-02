@@ -116,15 +116,16 @@ const Contact: React.FC = () => {
               </div>
 
               {status === 'success' && (
-                <div className="text-green-500 text-sm text-center bg-green-900/20 p-3 border border-green-900/50 rounded animate-pulse">
-                  Recebemos seu contato. Retornaremos em breve.
+                <div className="mt-4 p-4 bg-gold-900/20 border border-gold-500/30 rounded flex items-center justify-center gap-3 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                  <CheckCircle className="text-gold-500" size={20} />
+                  <span className="text-gold-400 font-medium text-sm">Recebemos seu contato com sucesso. Retornaremos em breve.</span>
                 </div>
               )}
               
               {status === 'error' && (
-                <div className="text-red-500 text-sm text-center flex items-center justify-center gap-2">
-                  <AlertCircle size={16} />
-                  Erro ao enviar. Tente pelo WhatsApp.
+                <div className="mt-4 p-4 bg-red-900/20 border border-red-500/30 rounded flex items-center justify-center gap-3 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                  <AlertCircle className="text-red-500" size={20} />
+                  <span className="text-red-400 font-medium text-sm">Erro ao enviar. Por favor, tente pelo WhatsApp.</span>
                 </div>
               )}
             </form>
