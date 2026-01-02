@@ -44,13 +44,13 @@ const Contact: React.FC = () => {
         </FadeIn>
 
         <div className="max-w-2xl mx-auto">
-          <FadeIn delay={200} className="bg-dark-900 p-8 md:p-10 border border-dark-800 shadow-2xl relative overflow-hidden">
+          <FadeIn delay={200} className="bg-dark-900 p-8 md:p-10 border border-dark-800 shadow-2xl relative overflow-hidden rounded-sm">
             {/* Gold Accent Line */}
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent"></div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Nome Completo</label>
+              <div className="group">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-gold-500 transition-colors">Nome Completo</label>
                 <input
                   type="text"
                   id="name"
@@ -58,13 +58,13 @@ const Contact: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full bg-dark-950 border border-dark-800 text-white px-4 py-3 focus:outline-none focus:border-gold-500 transition-colors placeholder-gray-600"
-                  placeholder="Digite seu nome"
+                  className="w-full bg-dark-950 border border-dark-800 text-white px-4 py-3 focus:outline-none focus:border-gold-500 transition-all duration-300 placeholder-gray-700"
+                  placeholder="Seu nome"
                 />
               </div>
 
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-2">Telefone / WhatsApp</label>
+              <div className="group">
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-gold-500 transition-colors">Telefone / WhatsApp</label>
                 <input
                   type="tel"
                   id="phone"
@@ -72,20 +72,20 @@ const Contact: React.FC = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   required
-                  className="w-full bg-dark-950 border border-dark-800 text-white px-4 py-3 focus:outline-none focus:border-gold-500 transition-colors placeholder-gray-600"
+                  className="w-full bg-dark-950 border border-dark-800 text-white px-4 py-3 focus:outline-none focus:border-gold-500 transition-all duration-300 placeholder-gray-700"
                   placeholder="(XX) XXXXX-XXXX"
                 />
               </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Relato Breve do Caso</label>
+              <div className="group">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-gold-500 transition-colors">Relato Breve do Caso</label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full bg-dark-950 border border-dark-800 text-white px-4 py-3 focus:outline-none focus:border-gold-500 transition-colors placeholder-gray-600"
+                  className="w-full bg-dark-950 border border-dark-800 text-white px-4 py-3 focus:outline-none focus:border-gold-500 transition-all duration-300 placeholder-gray-700"
                   placeholder="Descreva brevemente a situação..."
                 ></textarea>
               </div>
@@ -116,16 +116,16 @@ const Contact: React.FC = () => {
               </div>
 
               {status === 'success' && (
-                <div className="mt-4 p-4 bg-gold-900/20 border border-gold-500/30 rounded flex items-center justify-center gap-3 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                <div className="mt-4 p-4 bg-gold-900/10 border border-gold-500/30 rounded flex items-center justify-center gap-3 animate-pulse">
                   <CheckCircle className="text-gold-500" size={20} />
-                  <span className="text-gold-400 font-medium text-sm">Recebemos seu contato com sucesso. Retornaremos em breve.</span>
+                  <span className="text-gold-400 font-medium text-sm">Recebemos seu contato. Retornaremos em breve.</span>
                 </div>
               )}
               
               {status === 'error' && (
-                <div className="mt-4 p-4 bg-red-900/20 border border-red-500/30 rounded flex items-center justify-center gap-3 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                <div className="mt-4 p-4 bg-red-900/10 border border-red-500/30 rounded flex items-center justify-center gap-3">
                   <AlertCircle className="text-red-500" size={20} />
-                  <span className="text-red-400 font-medium text-sm">Erro ao enviar. Por favor, tente pelo WhatsApp.</span>
+                  <span className="text-red-400 font-medium text-sm">Erro ao enviar. Tente pelo WhatsApp.</span>
                 </div>
               )}
             </form>
