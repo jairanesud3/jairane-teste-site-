@@ -6,12 +6,35 @@ import { CONTACT_INFO } from '../constants';
 
 const Hero: React.FC = () => {
   return (
-    <section id="inicio" className="relative h-screen min-h-[600px] flex items-center justify-center bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed">
+    <section id="inicio" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
       
-      {/* Overlay extra para garantir leitura */}
-      <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-dark-950/40 pointer-events-none"></div>
+      {/* VÍDEO DE FUNDO */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover transform -translate-x-1/2 -translate-y-1/2"
+          // Poster é a imagem que aparece enquanto o vídeo carrega
+          poster="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+        >
+          {/* 
+            INSTRUÇÃO PARA VÍDEO LOCAL:
+            1. Coloque seu arquivo 'video.mp4' dentro da pasta 'public' do projeto.
+            2. Descomente a linha abaixo e comente/apague a linha do vídeo online.
+          */}
+          {/* <source src="/video.mp4" type="video/mp4" /> */}
 
-      <div className="container mx-auto px-6 md:px-12 relative z-10 pt-20">
+          {/* Vídeo Online de Exemplo (Ambiente Corporativo/Dark) */}
+          <source src="https://videos.pexels.com/video-files/5665448/5665448-hd_1920_1080_24fps.mp4" type="video/mp4" />
+        </video>
+
+        {/* Overlay Escuro para garantir contraste do texto sobre o vídeo */}
+        <div className="absolute inset-0 bg-dark-950/85 bg-gradient-to-t from-dark-950 via-dark-950/70 to-dark-950/80"></div>
+      </div>
+
+      <div className="container mx-auto px-6 md:px-12 relative z-20 pt-20">
         <div className="max-w-4xl mx-auto text-center">
           
           <FadeIn delay={100} direction="down">
@@ -32,7 +55,7 @@ const Hero: React.FC = () => {
           
           <FadeIn delay={500}>
             <div className="flex flex-col items-center">
-              {/* Linha decorativa corrigida */}
+              {/* Linha decorativa */}
               <div className="h-1 w-24 bg-gold-500 mb-8 rounded-full shadow-[0_0_10px_rgba(212,175,55,0.5)]"></div>
               
               <p className="text-lg md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
@@ -65,8 +88,8 @@ const Hero: React.FC = () => {
         </div>
       </div>
       
-      {/* Scroll Indicator - Corrigido para Seta Limpa */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center animate-bounce opacity-80">
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center animate-bounce opacity-80 z-20">
         <span className="text-[10px] uppercase tracking-[0.3em] text-gold-500 mb-2">Role</span>
         <ChevronDown className="text-gold-500 w-8 h-8" strokeWidth={1.5} />
       </div>

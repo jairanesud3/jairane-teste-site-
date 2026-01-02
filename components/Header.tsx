@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Gavel } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { NAV_ITEMS, CONTACT_INFO } from '../constants';
 import Button from './Button';
 
@@ -33,23 +33,9 @@ const Header: React.FC = () => {
         scrolled ? 'bg-dark-950/95 backdrop-blur-sm border-b border-dark-800 py-3 shadow-lg' : 'bg-transparent py-6'
       }`}
     >
-      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-        {/* Logo */}
-        <button 
-          type="button"
-          onClick={() => handleScrollToSection('#inicio')}
-          className="flex items-center gap-3 bg-transparent border-none p-0 cursor-pointer text-left group"
-        >
-          <div className="p-2 rounded bg-gold-500/10 border border-gold-500/20 group-hover:border-gold-500/50 transition-colors">
-             <Gavel className="text-gold-500 w-6 h-6" />
-          </div>
-          <div>
-            <span className="block font-serif text-xl text-white leading-none">Dra. Jairane Sousa</span>
-            <span className="block text-[10px] text-gold-500 tracking-[0.2em] mt-1">ADVOCACIA CRIMINAL</span>
-          </div>
-        </button>
-
-        {/* Desktop Menu */}
+      <div className="container mx-auto px-6 md:px-12 flex justify-end md:justify-center items-center">
+        
+        {/* Desktop Menu - Centralizado */}
         <nav className="hidden md:flex items-center space-x-8">
           {NAV_ITEMS.map((item) => (
             <button
@@ -71,7 +57,7 @@ const Header: React.FC = () => {
           </Button>
         </nav>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Toggle - Mantido na direita */}
         <button 
           type="button"
           className="md:hidden text-white hover:text-gold-500 transition-colors bg-transparent border-none p-2"
