@@ -11,15 +11,15 @@ const FloatingWhatsapp: React.FC = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex items-center justify-center group">
-      {/* Efeito de Radar (Ping) */}
+      {/* Efeito de Radar (Ping) - Mantido conforme solicitado */}
       <span className="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-30 animate-[ping_1.5s_ease-in-out_infinite]"></span>
       <span className="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-20 animate-[ping_1.5s_ease-in-out_infinite_delay-75ms]"></span>
       
-      {/* Botão Principal */}
+      {/* Botão Principal - REMOVIDO animate-bounce, adicionado transform hover suave */}
       <button 
         type="button"
         onClick={handleClick}
-        className="relative z-10 bg-[#25D366] text-white p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.6)] hover:bg-[#20bd5a] transition-all duration-300 hover:scale-110 flex items-center justify-center cursor-pointer border-none animate-[bounce_3s_infinite]"
+        className="relative z-10 bg-[#25D366] text-white p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.6)] hover:bg-[#20bd5a] transition-all duration-300 hover:scale-105 flex items-center justify-center cursor-pointer border-none"
         aria-label="Falar no WhatsApp"
       >
         <Phone className="w-8 h-8 fill-current" />
@@ -31,7 +31,7 @@ const FloatingWhatsapp: React.FC = () => {
         </span>
 
         {/* Tooltip */}
-        <div className="absolute right-full mr-4 bg-white text-dark-950 px-4 py-2 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0 pointer-events-none whitespace-nowrap">
+        <div className="absolute right-full mr-4 bg-white text-dark-950 px-4 py-2 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0 pointer-events-none whitespace-nowrap font-sans">
           <p className="font-bold text-sm">Plantão Criminal 24h</p>
           <p className="text-xs text-gray-600">Falar com Advogada</p>
           
