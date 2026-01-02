@@ -7,7 +7,7 @@ import { ArrowUpRight } from 'lucide-react';
 const Services: React.FC = () => {
   const handleConsultClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.open(`https://wa.me/55${CONTACT_INFO.whatsapp.replace(/\D/g, '')}`, '_blank', 'noopener,noreferrer');
+    alert("🚧 MODO DEMONSTRAÇÃO 🚧\n\nFuncionalidade desativada.\nIsso abriria o WhatsApp para consulta.");
   };
 
   return (

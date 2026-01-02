@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight, Shield, ChevronDown } from 'lucide-react';
+import { ChevronRight, Shield } from 'lucide-react';
 import Button from './Button';
 import FadeIn from './FadeIn';
 import { CONTACT_INFO } from '../constants';
@@ -19,22 +19,16 @@ const Hero: React.FC = () => {
           // Poster é a imagem que aparece enquanto o vídeo carrega
           poster="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
         >
-          {/* 
-            INSTRUÇÃO PARA VÍDEO LOCAL:
-            1. Coloque seu arquivo 'video.mp4' dentro da pasta 'public' do projeto.
-            2. Descomente a linha abaixo e comente/apague a linha do vídeo online.
-          */}
-          {/* <source src="/video.mp4" type="video/mp4" /> */}
-
-          {/* Vídeo Online de Exemplo (Ambiente Corporativo/Dark) */}
+          {/* Vídeo Online de Exemplo */}
           <source src="https://videos.pexels.com/video-files/5665448/5665448-hd_1920_1080_24fps.mp4" type="video/mp4" />
         </video>
 
-        {/* Overlay Escuro para garantir contraste do texto sobre o vídeo */}
-        <div className="absolute inset-0 bg-dark-950/85 bg-gradient-to-t from-dark-950 via-dark-950/70 to-dark-950/80"></div>
+        {/* Overlay Escuro AJUSTADO (Mais claro para ver o vídeo) */}
+        {/* Antes era bg-dark-950/85 (85%). Agora baixei para 50% no topo e gradiente em baixo */}
+        <div className="absolute inset-0 bg-dark-950/50 bg-gradient-to-t from-dark-950 via-dark-950/30 to-dark-950/60"></div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 relative z-20 pt-20">
+      <div className="container mx-auto px-6 md:px-12 relative z-20 pt-10 md:pt-20">
         <div className="max-w-4xl mx-auto text-center">
           
           <FadeIn delay={100} direction="down">
@@ -58,14 +52,14 @@ const Hero: React.FC = () => {
               {/* Linha decorativa */}
               <div className="h-1 w-24 bg-gold-500 mb-8 rounded-full shadow-[0_0_10px_rgba(212,175,55,0.5)]"></div>
               
-              <p className="text-lg md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
+              <p className="text-lg md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed font-light drop-shadow-md">
                 Atuação especializada em <strong className="text-gold-400">Tribunais Superiores</strong> e casos de alta complexidade. Sua liberdade é nossa prioridade absoluta.
               </p>
             </div>
           </FadeIn>
           
           <FadeIn delay={700} direction="up">
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pb-12 md:pb-0">
               <Button 
                 href={`https://wa.me/55${CONTACT_INFO.whatsapp.replace(/\D/g, '')}`}
                 className="w-full sm:w-auto min-w-[240px] py-4 text-base shadow-xl shadow-gold-500/20 group border-2 border-gold-500 bg-gold-500 hover:bg-gold-400 text-dark-950 font-bold tracking-wider"
@@ -85,13 +79,6 @@ const Hero: React.FC = () => {
               </Button>
             </div>
           </FadeIn>
-        </div>
-      </div>
-      
-      {/* Scroll Indicator - Corrigido e mais visível */}
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-30 pointer-events-none">
-        <div className="animate-bounce p-3 border border-gold-500/30 rounded-full bg-dark-950/30 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
-          <ChevronDown className="text-gold-500 w-8 h-8" strokeWidth={1.5} />
         </div>
       </div>
     </section>

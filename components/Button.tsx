@@ -27,16 +27,16 @@ const Button: React.FC<ButtonProps> = ({
   const combinedClasses = `${baseStyles} ${variants[variant]} ${className}`;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    // 1. Aggressively prevent default behavior unless it's a submit button
-    // This stops the browser from navigating/reloading which causes the white screen
+    // 1. Prevent default formatting
     if (type !== 'submit') {
       e.preventDefault();
-      e.stopPropagation(); 
     }
 
     // 2. Run custom onClick if exists
     if (onClick) {
       onClick(e);
+      // Se houver onClick, assumimos que ele lida com a lógica,
+      // mas se houver href também, verificamos abaixo.
     }
 
     if (!href) return;
@@ -54,13 +54,9 @@ const Button: React.FC<ButtonProps> = ({
       return;
     }
 
-    // 4. Handle External Links (Open in New Tab)
-    // CRITICAL: Force _blank to prevent iframe preview crashes
-    try {
-      window.open(href, '_blank', 'noopener,noreferrer');
-    } catch (err) {
-      console.error("Erro ao abrir link externo", err);
-    }
+    // 4. Handle External Links (DEMO MODE INTERCEPTION)
+    // Ao invés de abrir, mostra o alerta de demonstração
+    alert("🚧 MODO DEMONSTRAÇÃO 🚧\n\nEsta funcionalidade está desativada para visualização do portfólio.\n\nEm um projeto real, este botão abriria o link: " + href);
   };
 
   return (
