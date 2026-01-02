@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight, Shield } from 'lucide-react';
+import { ChevronRight, Shield, ChevronDown } from 'lucide-react';
 import Button from './Button';
 import FadeIn from './FadeIn';
 import { CONTACT_INFO } from '../constants';
@@ -32,7 +32,9 @@ const Hero: React.FC = () => {
           
           <FadeIn delay={500}>
             <div className="flex flex-col items-center">
+              {/* Linha decorativa corrigida */}
               <div className="h-1 w-24 bg-gold-500 mb-8 rounded-full shadow-[0_0_10px_rgba(212,175,55,0.5)]"></div>
+              
               <p className="text-lg md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto leading-relaxed font-light">
                 Atuação especializada em <strong className="text-gold-400">Tribunais Superiores</strong> e casos de alta complexidade. Sua liberdade é nossa prioridade absoluta.
               </p>
@@ -63,10 +65,10 @@ const Hero: React.FC = () => {
         </div>
       </div>
       
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:block animate-bounce">
-        <div className="w-[1px] h-16 bg-gradient-to-b from-gold-500 to-transparent mx-auto"></div>
-        <span className="text-[10px] uppercase tracking-[0.3em] text-gold-500 mt-2 block">Role</span>
+      {/* Scroll Indicator - Corrigido para Seta Limpa */}
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center animate-bounce opacity-80">
+        <span className="text-[10px] uppercase tracking-[0.3em] text-gold-500 mb-2">Role</span>
+        <ChevronDown className="text-gold-500 w-8 h-8" strokeWidth={1.5} />
       </div>
     </section>
   );
