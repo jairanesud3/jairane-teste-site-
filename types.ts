@@ -17,6 +17,12 @@ export interface DifferentiatorItem {
   icon: LucideIcon;
 }
 
+export interface TestimonialItem {
+  name: string;
+  text: string;
+  stars: number;
+}
+
 export interface FAQItem {
   question: string;
   answer: string;

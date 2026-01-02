@@ -8,13 +8,14 @@ import {
   ShieldCheck, 
   BrainCircuit 
 } from 'lucide-react';
-import { NavItem, ServiceItem, DifferentiatorItem, FAQItem } from './types';
+import { NavItem, ServiceItem, DifferentiatorItem, FAQItem, TestimonialItem } from './types';
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Início', href: '#inicio' },
   { label: 'Sobre', href: '#sobre' },
   { label: 'Atuação', href: '#atuacao' },
   { label: 'Diferenciais', href: '#diferenciais' },
+  { label: 'Depoimentos', href: '#depoimentos' },
   { label: 'FAQ', href: '#faq' },
   { label: 'Contato', href: '#contato' },
 ];
@@ -62,6 +63,24 @@ export const DIFFERENTIATORS: DifferentiatorItem[] = [
     title: 'Estratégia Personalizada',
     description: 'Cada caso é único. Desenvolvemos teses jurídicas artesanais focadas no melhor resultado.',
     icon: BrainCircuit
+  }
+];
+
+export const TESTIMONIALS: TestimonialItem[] = [
+  {
+    name: "C.S.",
+    text: "A Dra. Jairane foi incansável. Conseguiu reverter uma situação que parecia impossível no Tribunal. Profissionalismo impecável e humanidade no trato.",
+    stars: 5
+  },
+  {
+    name: "M.A.",
+    text: "Me senti amparado desde o primeiro momento na delegacia. A agilidade e a clareza nas explicações nos deram a tranquilidade necessária.",
+    stars: 5
+  },
+  {
+    name: "R.J.",
+    text: "Excelente advogada criminalista. A estratégia adotada no meu processo foi brilhante. Recomendo para quem precisa de defesa séria.",
+    stars: 5
   }
 ];
 
