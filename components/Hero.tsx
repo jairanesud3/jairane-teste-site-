@@ -88,10 +88,11 @@ const Hero: React.FC = () => {
         </div>
       </div>
       
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center animate-bounce opacity-80 z-20">
-        <span className="text-[10px] uppercase tracking-[0.3em] text-gold-500 mb-2">Role</span>
-        <ChevronDown className="text-gold-500 w-8 h-8" strokeWidth={1.5} />
+      {/* Scroll Indicator - Corrigido e mais visível */}
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-30 pointer-events-none">
+        <div className="animate-bounce p-3 border border-gold-500/30 rounded-full bg-dark-950/30 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+          <ChevronDown className="text-gold-500 w-8 h-8" strokeWidth={1.5} />
+        </div>
       </div>
     </section>
   );
